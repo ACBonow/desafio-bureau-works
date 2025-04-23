@@ -22,9 +22,7 @@
             class="sortable"
         >
           {{ header.label }}
-          <span v-if="sortField === header.field">
-              {{ sortOrder === 'asc' ? '▲' : '▼' }}
-            </span>
+
         </th>
       </tr>
       </thead>
@@ -90,33 +88,9 @@ export default {
               String(this.getNestedValue(item, field)).toLowerCase().includes(term)
           )
       );
-      this.sortItems();
     },
-    sortBy(field) {
-      if (this.sortField === field) {
-        this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
-      } else {
-        this.sortField = field;
-        this.sortOrder = 'asc';
-      }
-      this.sortItems();
-    },
-    sortItems() {
-      if (!this.sortField) return;
-      this.filteredItems.sort((a, b) => {
-        const valueA = this.getNestedValue(a, this.sortField);
-        const valueB = this.getNestedValue(b, this.sortField);
-        if (valueA < valueB) return this.sortOrder === 'asc' ? -1 : 1;
-        if (valueA > valueB) return this.sortOrder === 'asc' ? 1 : -1;
-        return 0;
-      });
-    },
+
   },
 };
 </script>
 
-<style>
-.sortable {
-  cursor: pointer;
-}
-</style>
