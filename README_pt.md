@@ -65,7 +65,8 @@ Rodando o FRONTEND
 
     netstat -ano | findstr :8081
     taskkill /PID <PID> /F
-    onde <PID> deve ser substituido pelo numero da task que apareceu quando executou o primeiro comando
+  
+onde <PID> deve ser substituido pelo numero do processo que apareceu quando executou o primeiro comando
 
 Path para documentos de teste
 - desafio-bureau-works/translator-manager-backend/src/main/resources/documents.csv
