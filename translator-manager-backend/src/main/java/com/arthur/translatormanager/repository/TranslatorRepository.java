@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface TranslatorRepository extends JpaRepository<Translator, Long> {
     // Arthur Bonow - 21-04-2025
@@ -15,5 +17,7 @@ public interface TranslatorRepository extends JpaRepository<Translator, Long> {
     @Query(value = "SELECT * FROM translator WHERE source_language = :sourceLanguage ORDER BY RANDOM() LIMIT 1",
             nativeQuery = true)
     Translator findRandomTranslatorBySourceLanguage(@Param("sourceLanguage") String sourceLanguage);
+
+    List<Translator> findByNameContainingIgnoreCaseOrSourceLanguageContainingIgnoreCase(String name, String sourceLanguage);
 
 }

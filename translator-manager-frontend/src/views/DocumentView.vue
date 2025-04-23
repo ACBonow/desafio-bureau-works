@@ -69,6 +69,26 @@
                 <label class="form-label">{{ $t('document.author') }}</label>
                 <input v-model="editingDocument.author" type="text" class="form-control" required />
               </div>
+              <div class="autocomplete">
+                <label class="form-label">{{ $t('translator.selectTranslator') }}</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    v-model="searchQuery"
+                    @input="fetchTranslators"
+                    placeholder="Digite para buscar tradutores..."
+                />
+                <ul v-if="showDropdown && filteredTranslators.length" class="dropdown-menu show">
+                  <li
+                      v-for="translator in filteredTranslators"
+                      :key="translator.id"
+                      class="dropdown-item"
+                      @click="selectTranslator(translator)"
+                  >
+                    {{ translator.name +" (" + translator.sourceLanguage + ") " }}
+                  </li>
+                </ul>
+              </div>
             </form>
           </ModalView>
         </div>
@@ -79,11 +99,15 @@
       import PaginationView from '@/components/PaginationView.vue';
       import ModalView from '@/components/ModalView.vue';
       import DocumentService from '@/services/DocumentService.js';
+      import TranslatorService from '@/services/TranslatorService.js';
 
       export default {
         components: { TableView, Pagination: PaginationView, ModalView },
         data() {
           return {
+            searchQuery: '', // Texto digitado no campo de busca
+            filteredTranslators: [], // Resultados filtrados da API
+            showDropdown: false, // Controla a exibição do dropdown
             documents: { content: [], number: 0, size: 10, totalPages: 0, first: true, last: true },
             showModal: false,
             isLoading: false, // Variável para controlar o estado de carregamento
@@ -179,6 +203,30 @@
             location.reload(true);
 
           },
+          async fetchTranslators() {
+            if (this.searchQuery.length < 2) {
+              // Não busca se o texto for muito curto
+              this.filteredTranslators = [];
+              this.showDropdown = false;
+              return;
+            }
+
+            try {
+              const response = await TranslatorService.search(this.searchQuery); // Método para buscar tradutores
+              this.filteredTranslators = response.data;
+              this.showDropdown = true;
+            } catch (error) {
+              console.error('Erro ao buscar tradutores:', error.response?.data || error.message);
+              this.filteredTranslators = [];
+              this.showDropdown = false;
+            }
+          },
+          selectTranslator(translator) {
+            this.searchQuery = translator.name; // Preenche o campo com o nome selecionado
+            this.editingDocument.translator = translator; // Define o tradutor no objeto editingDocument
+            this.showDropdown = false; // Fecha o dropdown
+            this.$emit('translatorSelected', translator); // Emite o tradutor selecionado para o componente pai
+          },
         },
       };
       </script>
@@ -194,5 +242,17 @@
   justify-content: center;
   align-items: center;
   z-index: 1050;
+}
+.autocomplete {
+  position: relative;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 1050;
+  max-height: 200px;
+  overflow-y: auto;
 }
 </style>

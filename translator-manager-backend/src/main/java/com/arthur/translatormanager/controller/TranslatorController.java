@@ -74,7 +74,18 @@ public class TranslatorController {
        return translator.map(t -> ResponseEntity.ok((Object) t))
                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("Translator not found"));
    }
-
+    @GetMapping("/search")
+    public ResponseEntity<Object> searchTranslators(@RequestParam String search) {
+        try {
+            List<Translator> translators = translatorService.findTranslatorsByNameOrSouceLanguage(search);
+            if (translators.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No translators found for the given search criteria");
+            }
+            return ResponseEntity.ok(translators);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error searching translators");
+        }
+    }
     // Arthur Bonow - 21-04-2025
     // Português: endpoint para atualizar tradutores
     // English: endpoint to update translators

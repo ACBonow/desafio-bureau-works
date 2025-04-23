@@ -69,8 +69,9 @@ public class DocumentController {
             // Arthur Bonow - 21-04-2025
             // Português: busca um Tradutor aleatório idioma de origem e setta no documento
             // English: search for random Translator by source language and set it in the document
-            document.setTranslator(translatorService.findRandomTranslatorBySourceLanguage(document.getLocale()));
-
+            if(document.getTranslator() == null){
+                document.setTranslator(translatorService.findRandomTranslatorBySourceLanguage(document.getLocale()));
+            }
             Document savedDocument = documentService.save(document);
             return ResponseEntity.ok(savedDocument);
         } catch (IllegalArgumentException ex) {

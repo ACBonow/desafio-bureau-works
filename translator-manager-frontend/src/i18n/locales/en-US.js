@@ -19,7 +19,8 @@ export default {
     sourceLanguage: 'Source Language',
     targetLanguage: 'Target Language',
     newTranslator: 'New Translator',
-    editTranslator: 'Edit Translator'
+    editTranslator: 'Edit Translator',
+    selectTranslator: 'Select Translator',
   },
   document: {
     title: 'Documents',
@@ -30,6 +31,7 @@ export default {
     translator: 'Translator',
     newDocument: 'New Document',
     editDocument: 'Edit Document'
+
   },
   errors: {
     loadError: 'Error loading data',

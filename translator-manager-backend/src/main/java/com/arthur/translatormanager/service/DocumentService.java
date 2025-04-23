@@ -66,6 +66,7 @@ public class DocumentService {
                     existingDocument.setContent(updated.getContent());
                     existingDocument.setLocale(updated.getLocale());
                     existingDocument.setAuthor(updated.getAuthor());
+                    existingDocument.setTranslator(updated.getTranslator());
                     return documentRepository.save(existingDocument);
                 }).orElseThrow(() -> new RuntimeException("Document not found"));
     }

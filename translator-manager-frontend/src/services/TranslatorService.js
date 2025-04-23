@@ -16,6 +16,9 @@ export default {
     delete(id) {
         return axios.delete(`${API_URL}/${id}`);
     },
+    search(query) {
+        return axios.get(`${API_URL}/search?search=${query}`);
+    },
     upload(file) {
         const formData = new FormData();
         formData.append('file', file);

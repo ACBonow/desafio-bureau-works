@@ -26,7 +26,9 @@ export default {
     downloadTemplate: 'Baixar Template',
     uploadSuccess: 'Upload realizado com sucesso!',
     uploadError: 'Erro ao fazer upload do arquivo',
-    localeInfo: 'O campo "locale" é opcional e será preenchido pela OpenAI se deixado em branco'
+    localeInfo: 'O campo "locale" é opcional e será preenchido pela OpenAI se deixado em branco',
+    selectTranslator: 'Tradutor selecionado'
+
   },
   document: {
     title: 'Documentos',
