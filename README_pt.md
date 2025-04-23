@@ -1,8 +1,6 @@
 # Desafio Técnico - FullStack
 ## Objetivo
-The main objective of the system is to provide a comprehensive platform for managing translator
-and document information, facilitating efficient interaction and control of these data in a scalable
-manner.
+O principal objetivo do sistema é fornecer uma plataforma abrangente para gerenciar informações de tradutores e documentos, facilitando a interação eficiente e o controle desses dados de forma escalável.
 
 ## Considerações
 Foi desenvolvido um sistema de gerenciamento de tradutores e documentos, com as seguintes funcionalidades:
@@ -65,13 +63,17 @@ Rodando o FRONTEND
 - Se a porta 8081 já estiver em uso, o Vue CLI irá sugerir uma porta alternativa. Você pode acessar a aplicação na 
   nova porta sugerida, porém precisa-rá alterar a URL liberada do CORS no backend.
 
+    netstat -ano | findstr :8081
+    taskkill /PID <PID> /F
+    onde <PID> deve ser substituido pelo numero da task que apareceu quando executou o primeiro comando
+
 Path para documentos de teste
 - desafio-bureau-works/translator-manager-backend/src/main/resources/documents.csv
 - desafio-bureau-works/translator-manager-backend/src/main/resources/translators.csv
 
 
 ## Tecnologias Utilizadas
-- Java 21 - https://www.oracle.com/br/java/technologies/downloads/#java21
+- Java 21 - https://www.oracle.com/br/java/technologies/downloads#java21
 - Spring Boot 3.4.4 
 - Maven 3.9.9 - https://maven.apache.org/download.cgi
 - PostgreSQL 17 - https://www.postgresql.org/download/
