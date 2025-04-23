@@ -31,6 +31,13 @@ Configure the Database
 - Create a user with the name "postgres" and password "postgres."
 - If necessary, update the credentials in the backend's application.properties file.
 
+How to update the OpenAI key:
+- Access https://platform.openai.com/api-keys
+- Click on "+ Create a new secret key" -> Click on "Create secret key"
+- Copy the key that appears and paste it into the application.properties file
+- Path: ..\desafio-bureau-works\translator-manager-backend\src\main\resources\application.properties
+- Replace the new key in the field: "openai.api.key="
+
 application.properties
 
     spring.datasource.url=jdbc:postgresql://localhost:5432/translator_manager  
@@ -98,6 +105,3 @@ Frontend Dependencies
 
 Database
 - PostgreSQL: A relational and object-relational database management system.
-
-
-
