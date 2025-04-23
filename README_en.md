@@ -1,9 +1,9 @@
-Here is the translation of your technical challenge description into English:
 
-Technical Challenge - FullStack
-Objective
+# Technical Challenge - FullStack
+## Objective
 The main objective of the system is to provide a comprehensive platform for managing translator and document information, facilitating efficient interaction and control of these data in a scalable manner.
-Considerations
+
+## Considerations
 A system was developed to manage translators and documents, with the following functionalities:
 - Frontend internationalization - option for Portuguese or English
 - CRUD operations for translators
@@ -12,8 +12,11 @@ A system was developed to manage translators and documents, with the following f
 - Uploading translators via CSV file
 
 The system was developed using Java 21 with Spring Boot on the backend and Vue.js on the frontend.
+
 The system was designed to be simple and user-friendly, with an intuitive interface.
+
 Although not ideal, I chose not to include authentication and authorization, as the focus of the challenge was to develop a functional, not complex system.
+
 - It is allowed to register translators with the same email, due to an example in the CSV file, although it is recommended that the email be unique.
 - It is allowed to register documents, via CSV or individually, without a location. When this occurs, the system will generate a location using OpenAI's AI.
 - Since there was no rule to set the responsible translator for a document, a random methodology was used, where the system will randomly select a translator for each document, if the translator has the source language equal to the document's language.
@@ -21,7 +24,7 @@ Although not ideal, I chose not to include authentication and authorization, as 
 - If there is no translator available for the document's language, the system will generate an exception and inform the user.
 - A translator can only be deleted if no documents are associated with this translator.
 
-How to Run the Project
+## How to Run the Project
 Clone the repository: https://github.com/ACBonow/desafio-bureau-works.git
 Configure the Database
 - Create a database in PostgreSQL named "translator_manager."
