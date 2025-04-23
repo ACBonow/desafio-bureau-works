@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+    <div v-if="isLoading" class="spinner-overlay">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h2>{{ $t('translator.title') }}</h2>
       <div class="d-flex align-items-center">
@@ -81,6 +86,7 @@ export default {
     return {
       translators: { content: [], number: 0, size: 10, totalPages: 0, first: true, last: true },
       showModal: false,
+      isLoading: false,
       editingTranslator: { name: '', email: '', sourceLanguage: '', targetLanguage: '' },
       headers: [
         { label: '#', style: 'width: 50px' },
@@ -141,6 +147,8 @@ export default {
       }
     },
     async handleFileUpload(event) {
+      this.isLoading = true;
+
       try {
         const file = event.target.files[0];
         await TranslatorService.upload(file);
@@ -149,6 +157,9 @@ export default {
         console.error('Erro ao fazer upload do arquivo:', error.response?.data || error.message);
         alert(error.response?.data || 'Erro ao fazer upload do arquivo.');
         location.reload(true);
+      }
+      finally {
+        this.isLoading = false;
       }
     },
     closeModal() {
@@ -159,3 +170,19 @@ export default {
   },
 };
 </script>
+
+
+<style>
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+</style>

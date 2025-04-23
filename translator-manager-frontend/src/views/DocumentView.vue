@@ -1,5 +1,10 @@
 <template>
         <div class="container">
+          <div v-if="isLoading" class="spinner-overlay">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>{{ $t('document.title') }}</h2>
             <div class="d-flex align-items-center">
@@ -81,6 +86,7 @@
           return {
             documents: { content: [], number: 0, size: 10, totalPages: 0, first: true, last: true },
             showModal: false,
+            isLoading: false, // Variável para controlar o estado de carregamento
             editingDocument: { subject: '', content: '', locale: '', author: '' },
             headers: [
               { label: '#', style: 'width: 50px' },
@@ -151,6 +157,8 @@
             }
           },
           async handleFileUpload(event) {
+            this.isLoading = true; // Ativa o spinner
+
             try {
               const file = event.target.files[0];
               await DocumentService.upload(file);
@@ -162,6 +170,9 @@
 
               location.reload(true);
             }
+            finally {
+              this.isLoading = false; // Desativa o spinner
+            }
           },
           closeModal() {
             this.showModal = false;
@@ -171,3 +182,17 @@
         },
       };
       </script>
+<style>
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+</style>
