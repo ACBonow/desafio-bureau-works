@@ -6,6 +6,7 @@ manner.
 
 ## Considerações
 Foi desenvolvido um sistema de gerenciamento de tradutores e documentos, com as seguintes funcionalidades:
+internacionalização do Frontend - opção de Português ou Inglês
 CRUD de tradutores
 CRUD de documentos
 inserção de documentos por arquivo CSV.
@@ -63,6 +64,11 @@ Rodando o FRONTEND
 - Frontend disponível em: http://localhost:8081
 - Se a porta 8081 já estiver em uso, o Vue CLI irá sugerir uma porta alternativa. Você pode acessar a aplicação na 
   nova porta sugerida, porém precisa-rá alterar a URL liberada do CORS no backend.
+
+Path para documentos de teste
+- desafio-bureau-works/translator-manager-backend/src/main/resources/documents.csv
+- desafio-bureau-works/translator-manager-backend/src/main/resources/translators.csv
+
 
 ## Tecnologias Utilizadas
 - Java 21 - https://www.oracle.com/br/java/technologies/downloads/#java21
