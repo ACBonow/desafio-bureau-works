@@ -18,8 +18,7 @@
             v-for="(header, headerIndex) in headers"
             :key="headerIndex"
             :style="header.style"
-            @click="sortBy(header.field)"
-            class="sortable"
+
         >
           {{ header.label }}
 
@@ -63,8 +62,7 @@ export default {
   data() {
     return {
       filterTerm: '',
-      sortField: null,
-      sortOrder: 'asc',
+
       filteredItems: [...this.items],
     };
   },
