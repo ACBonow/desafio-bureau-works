@@ -37,6 +37,13 @@ Configure o banco de dados
 - Crie um banco de dados no PostgreSQL chamado "translator_manager"
 - Crie um usuário com o nome "postgres" e senha "postgres"
 - Se necessário, altere as credenciais no arquivo application.properties do backend
+  
+Como atualizar a key da OpenAi
+- Acesse https://platform.openai.com/api-keys
+- Click em "+ Create a new secrect key" -> Click em "Create secret key"
+- Copiar a key que vai aparecer e colar no application.properties
+path: ..\desafio-bureau-works\translator-manager-backend\src\main\resources\application.properties 
+- Susbtituir a nova no campo: " openai.api.key= " 
 
 application.properties
    
